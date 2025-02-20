@@ -62,6 +62,7 @@ var doppelgangerSets=[];
 
 var lastSliderVal=1;
 
+
 var imageDir='images/cherry_picked_pics/';
 
 
