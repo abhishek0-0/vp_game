@@ -71,14 +71,14 @@
 // }
 
 
-// /* function applyGaussianBlur(ctx, width, height) { const imageData = ctx.getImageData(0, 0, width, height); 
-//   const data = imageData.data; const kernel = [ [1, 4, 7, 4, 1], [4, 16, 26, 16, 4], [7, 26, 41, 26, 7], [4, 16, 26, 16, 4], [1, 4, 7, 4, 1] ];
-//    const kernelSize = 5; const kernelSum = 273; const applyKernel = (x, y) => { let r = 0, g = 0, b = 0; for (let ky = 0; ky < kernelSize; ky++) { for (let kx = 0; kx < kernelSize; kx++) { const px = (x + kx - 2) * 4; const py = (y + ky - 2) * width * 4; 
-//     const weight = kernel[ky][kx]; r += data[px + py] * weight; g += data[px + py + 1] * weight; b += data[px + py + 2] * weight; } } 
+/* function applyGaussianBlur(ctx, width, height) { const imageData = ctx.getImageData(0, 0, width, height); 
+  const data = imageData.data; const kernel = [ [1, 4, 7, 4, 1], [4, 16, 26, 16, 4], [7, 26, 41, 26, 7], [4, 16, 26, 16, 4], [1, 4, 7, 4, 1] ];
+   const kernelSize = 5; const kernelSum = 273; const applyKernel = (x, y) => { let r = 0, g = 0, b = 0; for (let ky = 0; ky < kernelSize; ky++) { for (let kx = 0; kx < kernelSize; kx++) { const px = (x + kx - 2) * 4; const py = (y + ky - 2) * width * 4; 
+    const weight = kernel[ky][kx]; r += data[px + py] * weight; g += data[px + py + 1] * weight; b += data[px + py + 2] * weight; } } 
     
-//     return [r / kernelSum, g / kernelSum, b / kernelSum]; }; for (let y = 2; y < height - 2; y++) { for (let x = 2; x < width - 2; x++) { const [r, g, b] = applyKernel(x, y); const index = (x + y * width) * 4; data[index] = r; data[index + 1] = g; data[index + 2] = b; } }
-//      ctx.putImageData(imageData, 0, 0); }
-//  */
+    return [r / kernelSum, g / kernelSum, b / kernelSum]; }; for (let y = 2; y < height - 2; y++) { for (let x = 2; x < width - 2; x++) { const [r, g, b] = applyKernel(x, y); const index = (x + y * width) * 4; data[index] = r; data[index + 1] = g; data[index + 2] = b; } }
+     ctx.putImageData(imageData, 0, 0); }
+ */
 
 
 
@@ -116,13 +116,26 @@ export default function App() {
     <div className="App">
       <header className="App-header">
         <h1>Player Selector and Disguise</h1>
-        {!showPlayerSelector && <button onClick={handleStartClick}>Start</button>}
+        <h3>Disguise Your Agent</h3>
+        
+        
+        { <button onClick={handleStartClick}>Start</button>}
         {showPlayerSelector && !showDisguisePlayer && (
           <PlayerSelector players={players} onSelection={handleSelection} />
         )}
+
+
+
+
         {showDisguisePlayer && currentPlayer && (
           <DisguisePlayer player={currentPlayer} onDisguise={() => {}} />
+       
         )}
+
+
+
+
+
       </header>
     </div>
   );
