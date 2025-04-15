@@ -95,6 +95,31 @@ button:disabled {
   font-weight: bold;
 }
 
+.password_header {
+  background-color: #ff7f50;
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.encrypt_btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 14px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.encrypt_btn:hover {
+  background-color: #0056b3;
+}
+
 .input-container {
   margin: 20px 0;
   text-align: left;

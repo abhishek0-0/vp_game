@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './styles.css';
 import PlayerSelector from './PlayerSelector';
-const DisguisePlayer = ({ player, onDisguise }) => {
+const DisguisePlayer = ({ player, onDisguise, onEncryptionDecision}) => {
   const canvasRef = useRef(null);
   const disguisedImageCanvasRef = useRef(null);
 
@@ -29,6 +29,11 @@ const DisguisePlayer = ({ player, onDisguise }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [savedPassword, setSavedPassword] = useState('');
   const [showMainContainer, setShowMainContainer] = useState(true);
+
+  
+  const [showEncryptionPrompt, setShowEncryptionPrompt] = useState(true);
+
+
 
   const players = [ 
     { name: 'Player 1', src: 'images/personel/1.jpg'},
@@ -125,13 +130,17 @@ const DisguisePlayer = ({ player, onDisguise }) => {
   
 
   const handleMoreInfoToggle = () => { setShowMoreInfo(!showMoreInfo); };
-  const handleCrackPassword = () => {
-    const userInput = prompt('Enter something to crack the password:');
-    if (userInput) {
-      setSavedPassword(userInput);
-      alert('Password saved for later.');
-    }
-  };
+
+
+  // const handleCrackPassword = () => {
+  //   const userInput = prompt('Enter something to crack the password:');
+  //   if (userInput) {
+  //     setSavedPassword(userInput);
+  //     alert('Password saved for later.');
+  //   }
+  // };
+
+
   const handleSubmit = () => { 
     const disguisedImageCanvas = disguisedImageCanvasRef.current;
     const disguisedImageContext = disguisedImageCanvas.getContext('2d');
@@ -196,7 +205,9 @@ const DisguisePlayer = ({ player, onDisguise }) => {
         </div>
         <button onClick={applyDisguise}>Apply Disguise</button>
         <button onClick={handleSubmit}>Submit</button>
-        <button className="crack" onClick={handleCrackPassword}>Crack Password</button>
+
+        {/* we do not need this here  */}
+       {/* <button className="crack" onClick={handleCrackPassword}>Crack Password</button> */}
       
           <button onClick={handleMoreInfoToggle}>More Info</button>
           {showMoreInfo && (
@@ -208,22 +219,25 @@ const DisguisePlayer = ({ player, onDisguise }) => {
           )}
       </div>
       <div style={{ display: showMainContainer ? 'none' : 'block' }}>
-        <div>Choose wisely! You can only try to undo 1 effect</div>
+        {/* <div>Choose wisely! You can only try to undo 1 effect</div> */}
         <div>
           <canvas ref={disguisedImageCanvasRef} className="image" id="disguisedImageCanvas" ></canvas>
-          <div style={{display: "flex", justifyContent: "center"}}>
+
+
+          {/* <div style={{display: "flex", justifyContent: "center"}}>
             {players.map((player, idx) => {
               return (<div index={idx} style={{ display: "flex", }}>
                   <img src={player.src} width="100px" height="100px" style={{cursor: "pointer"}} />
                 </div>
               )})}
-          </div>
-          <div>
-            <input placeholder='Enter Password Here'/>
-            <button >Submit</button>
-            <button>Crack Password</button>
-            {/* <PlayerSelector players={players} onSelection={handleSelection}/> */}
-          </div>
+          </div> */}
+          {showEncryptionPrompt && (
+        <div>
+                <p className='password_header' >🔐 Do you want to encrypt your disguise with a password?</p>
+                <button  className="encrypt_btn" onClick={() => onEncryptionDecision(true)}>Yes</button>
+                  <button  className="encrypt_btn" onClick={() => onEncryptionDecision(false)}>No</button>
+                </div>
+                                )}  
         </div>
       </div>
     </div>
